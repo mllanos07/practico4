@@ -16,14 +16,16 @@ function App() {
   };
 
   const handleImc = () => {
-    setIndice (inputPeso / (inputAltura ** 2))
+    const imc = inputPeso / (inputAltura ** 2)
+    setIndice(imc)
+    handleResultado(imc)
   }
 
-  const handleResultado = () => {
-    if (indice < 18.5) setResultado ("Peso inferior al normal")
-    if (indice > 18.5 && indice < 24.9) setResultado ("Peso normal")
-    if (indice > 25.0 && indice < 29.0) setResultado ("Peso superior al normal")
-    if (indice > 30) setResultado ("Obesidad")
+  const handleResultado = (imc) => {
+    if (imc < 18.5) setResultado ("Peso inferior al normal")
+    if (imc > 18.5 && imc < 24.9) setResultado ("Peso normal")
+    if (imc > 25.0 && imc < 29.0) setResultado ("Peso superior al normal")
+    if (imc > 30) setResultado ("Obesidad")
 
     /*
     "Peso inferior al normal"	Menos de 18.5
@@ -47,9 +49,8 @@ function App() {
         onChange={handleInputChangeAltura} />
         <p>Texto ingresado: {inputAltura}</p>
         <button onClick={handleImc}>Calcular IMC</button>
-        <button onClick={handleResultado}>Este es su resultado</button>
-        {indice && <p>IMC: {indice}</p>}
-        {resultado && <p>resultado: {resultado}</p>}
+        <p>IMC: {indice}</p>
+        <p>resultado: {resultado}</p>
       </main>
     </div>
   );
